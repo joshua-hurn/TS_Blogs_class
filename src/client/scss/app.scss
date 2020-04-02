@@ -3,3 +3,8 @@ $theme-colors: (
 );
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+img {
+    max-width: 1em;
+    float: right;
+}

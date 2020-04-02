@@ -15,7 +15,7 @@ const post = (title: string, content: string, authorid: number) => Query<TBlogs[
 
 const put = (content: string, id: number) => Query(`UPDATE blogs SET content = ? WHERE id = ?;`, [content, id]);
 
-const destroy = (id: number) => Query(`DELETE FROM blogs WHERE id = ?;`, [id])
+const destroy = (id: number) => Query("DELETE FROM `blogs`.`Blogs` WHERE (`id` = '?');", [id]);
 
 export default {
     all,

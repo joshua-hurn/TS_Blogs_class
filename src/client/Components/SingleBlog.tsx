@@ -16,12 +16,16 @@ export default function SingleBlog() {
         getBlog();
     }, [id]);
 
-    return (
-        <div className="card" style={{ width: "18rem" }}>
-            <div className="card-body">
-                <h5 className="card-title">{blog[0].title}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">{blog[0].content}</h6>
+    if (blog.length <= 0) {
+        return null
+    } else {
+        return (
+            <div className="card" style={{ width: "18rem" }}>
+                <div className="card-body">
+                    <h5 className="card-title">{blog[0].title}</h5>
+                    <h6 className="card-subtitle mb-2 text-muted">{blog[0].content}</h6>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
