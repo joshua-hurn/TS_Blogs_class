@@ -27,19 +27,33 @@ router.get('/:id?', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const newBlog = await db.blogs.post(req.body.title, req.body.content, req.body.authorid);
-        res.json(newBlog);
+        const newBlog = await db.blogs.post(req.body.title, req.body.content, Number(req.body.authorid));
+        const newBlogTag = await db.blogTags.post(newBlog.insertId, Number(req.body.tagid));
+        res.json(newBlogTag);
     } catch (e) {
         console.log(e);
-        res.status(500).json(e + "my code broke");
+        res.status(500).json(e);
     }
 });
 
-router.delete('/id', (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
-
+        const edittedBlog = await db.blogs.put(req.body.content, Number(req.body.id));
+        res.json(edittedBlog);
     } catch (e) {
+        console.log(e);
+        res.status(500).json(e);
+    }
+});
 
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = Number(req.params.id)
+        const deleted = await db.blogs.destroy(id);
+        res.json(deleted);
+    } catch (e) {
+        console.log(e);
+        res.status(500).json('delete failed');
     }
 });
 
