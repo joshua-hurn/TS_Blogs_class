@@ -19,7 +19,7 @@ export const Query = <T = any>(query: string, values?: any) => {
     });
 }
 
-import chirps from './queries/chirps';
+import blogs from './queries/blogs';
 export default {
-    chirps
+    blogs
 }
