@@ -7,11 +7,12 @@ interface TTags {
 
 const all = () => Query<TTags[]>(`SELECT * FROM Tags`);
 
-// const one = (id: any) => Query<TTags[]>(`SELECT blogs.* FROM Tags JOIN Authors ON Authors.id = Blogs.authorid WHERE Blogs.id = ${id}`);
+const some = (blogid: number) => Query<TTags[]>(`spBlogTags(${blogid})`);
 
-// const post = (title: string, content: string, authorid: number) => Query<TBlogs[]>(`INSERT INTO Blogs (title, content, authorid) VALUE (?, ?, ?);`, [title, content, Number(authorid)]);
+const post = (blogid: string, tagid: string) => Query<TTags[]>(`INSERT INTO BlogTags (blogid, tagid) value (?, ?);`, [blogid, tagid]);
 
 export default {
     all,
-    // one
+    some,
+    post
 }

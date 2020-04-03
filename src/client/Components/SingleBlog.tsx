@@ -9,7 +9,6 @@ export default function SingleBlog() {
         const getBlog = async () => {
             let res = await fetch(`/api/blogs/${id}`);
             let blogs = await res.json();
-            console.log(blogs);
             setBlog(blogs);
         }
 

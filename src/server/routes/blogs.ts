@@ -28,8 +28,7 @@ router.get('/:id?', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const newBlog = await db.blogs.post(req.body.title, req.body.content, Number(req.body.authorid));
-        const newBlogTag = await db.blogTags.post(newBlog.insertId, Number(req.body.tagid));
-        res.json(newBlogTag);
+        res.json(newBlog);
     } catch (e) {
         console.log(e);
         res.status(500).json(e);

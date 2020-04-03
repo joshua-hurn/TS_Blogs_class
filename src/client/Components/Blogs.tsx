@@ -11,9 +11,10 @@ class Blogs extends React.Component<IAppProps, IAppState> {
 	}
 
 	async componentDidMount() {
+		localStorage.setItem('authorid', "1");
 		this.fetchBlogs();
 	}
-	
+
 	fetchBlogs = async () => {
 		try {
 			let r = await fetch('/api/blogs/');

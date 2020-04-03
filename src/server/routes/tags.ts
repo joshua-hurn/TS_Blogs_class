@@ -14,4 +14,14 @@ router.get('/:id?', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const tags = await db.tags.post(req.body.blogid, req.body.tagid);
+        res.json(tags);
+    } catch (e) {
+        console.log(e);
+        res.status(500).json("post failed.")
+    }
+});
+
 export default router;
